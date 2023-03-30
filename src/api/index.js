@@ -14,14 +14,17 @@ function createInstace() {
 }
 const instance = createInstace();
 
+// 회원가입 API
 function registerUser(userData) {
   return instance.post("signup", userData)
 }
 
+// 로그인 API
 function loginUser(userData) {
   return instance.post("login", userData)
 }
 
+// 학습 노트 데이터를 조회하는 API
 function fetchPosts() {
   return instance.get("posts")
 }
