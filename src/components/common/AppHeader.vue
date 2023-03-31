@@ -2,6 +2,7 @@
   <div>
     <header>
       <div>
+        <p>연습</p>
         <router-link to="/" class="logo">
           TIL
         </router-link>
