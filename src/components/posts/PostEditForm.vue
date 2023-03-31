@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Create Post</h1>
+    <h1>Edit Post</h1>
     <div class="create_form">
       <form v-on:submit.prevent="submitForm">
         <div>
@@ -12,7 +12,7 @@
           <textarea id="contents" rows="5" v-model="contents"></textarea>
           <p class="error" v-if="!isContentValid">Contents length must be less than 10</p>
         </div>
-        <button type="submit" :disabled="!isContentValid">Create</button>
+        <button type="submit" :disabled="!isContentValid">Edit</button>
       </form>
       <p class="error">{{ logMessage }}</p>
     </div>
@@ -20,7 +20,8 @@
 </template>
 
 <script>
-import { createPost } from '@/api/posts'
+import { fetchPost } from '@/api/posts'
+// import { createPost } from '@/api/posts'
 
 export default {
   data() {
@@ -36,18 +37,16 @@ export default {
     }
   },
   methods: {
-    async submitForm() {
-      try {
-        const response = await createPost({
-          title: this.title,
-          contents: this.contents
-        })
-        this.$router.push('/main')
-        console.log(response);
-      } catch (error) {
-        this.logMessage = error.response.data.message;
-      }
+    submitForm() {
+      console.log("수정");
     }
+  },
+  async created() {
+    const id = this.$route.params.id;
+    const { data } = await await fetchPost(id);
+    console.log(data);
+    this.title = data.title;
+    this.contents = data.contents;
   }
 }
 </script>

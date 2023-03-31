@@ -40,7 +40,6 @@ export default {
         }
         await this.$store.dispatch("LOGIN", userData)
         // const { data } =  await loginUser(userData);
-        // console.log(data);
         // this.$store.commit('setUsername', data.user.username)
         // this.$store.commit('setToken', data.token);
         // saveAuthToCookie(data.user.username);
