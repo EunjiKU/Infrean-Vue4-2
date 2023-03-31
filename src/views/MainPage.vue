@@ -51,9 +51,9 @@ export default {
 }
 </script>
 
-<style scoped>
-  .item_list {margin: 20px; display: flex;}
-  .item_list .item {position: relative; flex: 1 1 auto; min-width: calc(50% - 10px); min-height: 200px; padding: 20px; background: #fff;}
+<style>
+  .item_list {margin: 20px; display: flex; flex-wrap: wrap;}
+  .item_list .item {position: relative; flex: 1 1 auto; min-width: calc(50% - 10px); min-height: 200px; padding: 20px; margin-bottom: 20px; background: #fff;}
   .item_list .item:nth-child(2n) {margin-left: 20px;}
   .item_list .item .item_tit {margin-bottom: 10px; font-size: 20px; font-weight: 600;}
   .item_list .item .item_cont {text-align: left;}
