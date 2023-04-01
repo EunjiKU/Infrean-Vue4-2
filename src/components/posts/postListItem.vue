@@ -3,7 +3,7 @@
     <p class="item_tit">{{ postItem.title }}</p>
     <p class="item_cont">{{ postItem.contents }}</p>
     <p class="item_date">
-      <span>{{ postItem.createdAt }}</span>
+      <span>{{ postItem.createdAt | formatDate }}</span>
       <span class="modi_btn" @click="routerEditPage">📝</span>
       <span class="del_btn" @click="deleteItem">❌</span>
     </p>
@@ -20,6 +20,11 @@ export default {
       required: true,
     }
   },
+  // filters: {
+  //   formatData(value) {
+  //     return new Date(value);
+  //   }
+  // },
   methods: {
     async deleteItem() {
       if(confirm('You want to delete it?')) {

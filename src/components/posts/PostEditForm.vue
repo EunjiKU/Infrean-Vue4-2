@@ -15,20 +15,21 @@
         <button type="submit" :disabled="!isContentValid">Edit</button>
       </form>
       <p class="error">{{ logMessage }}</p>
+      <p class="error">{{ errorMessage }}</p>
     </div>
   </div>
 </template>
 
 <script>
-import { fetchPost } from '@/api/posts'
-// import { createPost } from '@/api/posts'
+import { fetchPost, editPost } from '@/api/posts'
 
 export default {
   data() {
     return {
       title: "",
       contents: "",
-      logMessage: ""
+      logMessage: "",
+      errorMessage: ""
     }
   },
   computed: {
@@ -37,9 +38,21 @@ export default {
     }
   },
   methods: {
-    submitForm() {
-      console.log("수정");
-    }
+    async submitForm() {
+      const id = this.$route.params.id;
+      try {
+        await editPost(id, {
+          title: this.title,
+          contents: this.contents
+        })
+        console.log("수정완료");
+        this.$router.push('/main');
+      } catch(error) {
+          console.log(error)
+          this.errorMessage = error;
+      }
+    },
+
   },
   async created() {
     const id = this.$route.params.id;

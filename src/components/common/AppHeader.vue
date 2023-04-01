@@ -2,7 +2,7 @@
   <div>
     <header>
       <div>
-        <router-link to="/" class="logo">
+        <router-link :to="logoLink" class="logo">
           TIL
         </router-link>
       </div>
@@ -21,15 +21,23 @@
 </template>
 
 <script>
+import { deleteCookie } from '@/utils/cookie'
+
 export default {
   computed: {
     isUserLogin() {
       return this.$store.getters.isLogin;
+    },
+    logoLink() {
+      return this.$store.getters.isLogin ? '/main' : '/login'
     }
   },
   methods: {
     logoutUser() {
       this.$store.commit("clearUsername");
+      this.$store.commit("clearToken");
+      deleteCookie('til_auth');
+      deleteCookie('til_user');
       this.$router.push("/login")
     }
   }
